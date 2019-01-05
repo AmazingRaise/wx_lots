@@ -32,7 +32,8 @@ def wx_input():
     list = [token, timestamp, nonce]
     list.sort()
     sha1 = hashlib.sha1()
-    map(sha1.update, list)
+    for value in list:
+        sha1.update(value.encode())
     hashcode = sha1.hexdigest()
     if hashcode == signature:
         return echostr
